@@ -1,0 +1,93 @@
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+
+import { UsersService } from '../../shared/services/users.service';
+import { User } from '../../shared/models/user.model';
+import { DialoguesService } from '../shared/services/dialogues.service';
+import { Observable } from 'rxjs/Observable';
+
+@Component({
+  selector: 'app-all-users',
+  templateUrl: './all-users.component.html',
+  styleUrls: ['./all-users.component.less']
+})
+export class AllUsersComponent implements OnInit {
+
+  constructor(private usersService: UsersService,
+    private dialoguesService: DialoguesService,
+    private router: Router) { }
+
+  users: User[] = [];
+  mainUser: User = JSON.parse(window.localStorage.getItem('user'));
+
+  ngOnInit() {
+    this.usersService.getUsers()
+      .subscribe((users: User[]) => {
+        let mainUser = JSON.parse(window.localStorage.getItem('user'));
+        this.users = users.filter(u => u.id !== mainUser.id);
+      })
+  }
+
+  searchPlaceholder = "Ім'я";
+  searchField = 'name';
+  searchValue = '';
+
+  changeCriteria(field: string) {
+    const namesMap = {
+      name: "Ім'я",
+      position: "Посада"
+    }
+    this.searchPlaceholder = namesMap[field];
+    this.searchField = field;
+  }
+
+  private onClickWriteMessage(secondId, secondUserName) {
+    let lastBindId: number;
+    let dataa;
+    this.dialoguesService.getDialoguesByUsersId(this.mainUser.id, secondId)
+      .subscribe((data) => {
+        let commonDialogue = this.findCommonDialogue(data);
+        if (commonDialogue) {
+          this.router.navigate(['chat/dialogue', commonDialogue, { secondUserName }]);
+        } else {
+          this.createNewDialogue(secondId);
+        };
+      })
+  }
+
+  createNewDialogue(secondId) {
+    let lastBindId
+    this.dialoguesService.getAllBindDesc()
+      .subscribe((data) => {      // i want to use Observable.combineLatest, but in this line i have error500. i dont know whats wrong
+        lastBindId = data[0].dialogueID + 1;        //I am have too small experience
+      });
+      this.func(secondId, 4);
+  }
+
+  func(secondId, lastBindId) {
+    lastBindId = 4;
+    Observable.combineLatest(
+      this.dialoguesService.createNewBind({ userID: this.mainUser.id, dialogueID: lastBindId }),
+      this.dialoguesService.createNewBind({ userID: secondId, dialogueID: lastBindId }),
+      this.dialoguesService.createNewDialogue({ messages: [] }))
+      .subscribe((data) => { console.log(data) });
+  }
+
+  private findCommonDialogue(data) {
+    for (let i of data) {
+      let tempFirstUserID = i.userID;
+      let tempDialogue = i.dialogueID;
+      for (let j of data) {
+        if (j.userID === tempFirstUserID) {
+          continue;
+        } else if (j.dialogueID === tempDialogue) {
+          return j.dialogueID;
+        }
+      }
+    }
+  }
+
+
+}
+
+

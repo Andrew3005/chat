@@ -1,0 +1,68 @@
+<div class="auth-content">
+    <p class="text-xs-center">Реєстрація для отримання доступу</p>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group" [ngClass]="{'has-error': form.get('email').touched && form.get('email').invalid}">
+            <label for="email">E-mail</label>
+            <input type="text" class="form-control underlined" id="email" placeholder="Введіть e-mail" formControlName="email">
+            <span class="form-help-text" *ngIf="form.get('email').touched && form.get('email').invalid">
+                <span *ngIf="form.get('email')['errors']['required']">
+                    Поле не может бути пустим.
+                </span>
+            <span *ngIf="form.get('email')['errors']['email']">
+                    Введіть корректно e-mail.
+                </span>
+            <span *ngIf="form.get('email')['errors']['forbiddenEmail']">
+                    E-mail вже зайнято.
+                </span>
+            </span>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': form.get('password').touched && form.get('password').invalid}">
+            <label for="password">Пароль</label>
+            <input type="password" class="form-control underlined" id="password" placeholder="Введіть пароль" formControlName="password">
+            <span class="form-help-text" *ngIf="form.get('password').touched && form.get('password').invalid">
+                <span *ngIf="form.get('password')['errors']['required']">
+                    Поле не может бути пустим.
+                </span>
+            <span *ngIf="form.get('password')['errors']['minlength'] && form.get('password')['errors']['minlength']['requiredLength']">
+                    Мінімальна кількість символів - {{ form.get('password')['errors']['minlength']['requiredLength'] }}. 
+                    Зараз - {{ form.get('password')['errors']['minlength']['actualLength'] }}
+                </span>
+            </span>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': form.get('name').touched && form.get('name').invalid}">
+            <label for="name">Ім'я</label>
+            <input type="text" class="form-control underlined" id="name" placeholder="Введіть ім'я" formControlName="name">
+            <span class="form-help-text" *ngIf="form.get('name').touched && form.get('name').invalid">
+                <span *ngIf="form.get('name')['errors']['required']">
+                    Поле не может бути пустим.
+                </span>
+            </span>
+        </div>
+        <div class="form-group" [ngClass]="{'has-error': form.get('position').touched && form.get('position').invalid}">
+            <label for="position">Посада</label>
+            <input type="text" class="form-control underlined" id="position" placeholder="Введіть посаду" formControlName="position">
+            <span class="form-help-text" *ngIf="form.get('position').touched && form.get('position').invalid">
+                    <span *ngIf="form.get('position')['errors']['required']">
+                        Поле не может бути пустим.
+                    </span>
+            </span>
+        </div>
+        <div class="form-group">
+            <label for="agree">
+                <input  type="checkbox" class="checkbox" id="agree" formControlName="agree">
+                <span>Згоден з правилами</span>
+            </label>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-block btn-primary" [disabled]="form.invalid">Зареєструватись</button>
+        </div>
+        <div class="form-group">
+            <p class="text-muted text-xs-center">
+                Вже є акаунт?
+                <a routerLink="/login">
+                    Зайти!
+                </a>
+            </p>
+        </div>
+    </form>
+</div>

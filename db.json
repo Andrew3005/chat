@@ -1,0 +1,99 @@
+{
+    "users": [{
+            "name": "Андрій Піддубняк",
+            "email": "apoddubnjak4@gmail.com",
+            "password": "123456",
+            "position": "Директор",
+            "id": 1
+        },
+        {
+            "name": "Рой Владислав",
+            "email": "asd@gmail.com",
+            "password": "123456",
+            "position": "Web-developer",
+            "id": 2
+        },
+        {
+            "name": "Квасун Михайло",
+            "email": "dsa@gmail.com",
+            "password": "123456",
+            "position": "HR",
+            "id": 3
+        },
+        {
+            "name": "Філонюк Денис",
+            "email": "qwe@gmail.com",
+            "password": "123456",
+            "position": "CEO",
+            "id": 4
+        }
+    ],
+    "bindDialoguesToUser": [{
+            "userID": 1,
+            "dialogueID": 1
+        },
+        {
+            "userID": 2,
+            "dialogueID": 1
+        },
+        {
+            "userID": 2,
+            "dialogueID": 2
+        },
+        {
+            "userID": 3,
+            "dialogueID": 2
+        },
+        {
+            "userID": 1,
+            "dialogueID": 3
+        },
+        {
+            "userID": 3,
+            "dialogueID": 3
+        }
+    ],
+    "dialogues": [{
+            "id": 1,
+            "messages": [{
+                    "senderID": 1,
+                    "text": "Привіт, як справи?",
+                    "time": "23:00 08.05"
+                },
+                {
+                    "senderID": 2,
+                    "text": "Привіт, все добре, а ти як?",
+                    "time": "23:23 08.05"
+                }
+            ]
+        },
+        {
+            "id": 2,
+            "messages": [{
+                    "senderID": 2,
+                    "text": "Привіт, як справи?",
+                    "time": "23:00 08.05"
+                },
+                {
+                    "senderID": 3,
+                    "text": "Привіт, все добре, а ти як?",
+                    "time": "23:23 08.05"
+                }
+            ]
+        },
+        {
+            "id": 3,
+            "messages": [{
+                    "senderID": 1,
+                    "text": "Привіт, як справи?",
+                    "time": "23:00 08.05.18"
+                },
+                {
+                    "senderID": 3,
+                    "text": "Привіт, все добре, а ти як?",
+                    "time": "23:23 08.05"
+                }
+            ]
+        }
+    ]
+}

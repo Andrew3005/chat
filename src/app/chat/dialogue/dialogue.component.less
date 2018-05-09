@@ -1,0 +1,86 @@
+.right-bar{
+    display: flex;
+    flex-direction: column;
+    &__user-name{
+        font-size: 12px;
+        margin-bottom: 0px;
+    }
+    &__block-message{  
+        border-top: 2px solid #ccc;           
+        background-color: #fff;  
+        display: flex;
+        flex-direction: row;
+        align-items: center;            
+        position: fixed;
+        bottom: 0;
+        padding: 10px !important;
+    }
+    &__main{
+        padding-left:15px;
+    }
+    &__btn-mobile{
+            display: none;
+            margin:auto;
+    }
+    &__send{
+        cursor: pointer;
+        margin: 0 15px;       
+        width:110px;
+        border-radius:5%;
+    }
+    &__main-user{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        position: relative;
+        left:50% !important;
+        margin: 10px 0;
+        .right-bar__message{
+            background-color:#00a300;
+            color:white;                
+        }
+    }
+    &__second-user{
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        margin: 10px 0;
+    }
+    &__img-user{
+        width: 55px;
+    }
+    &__message{
+        padding: 10px 20px;
+        background-color: #ccc;
+        border-radius: 10px;
+        font-weight: 600;
+        margin-right: 15px;
+    }
+    &__time{
+        font-size: 12px;
+    }
+}
+
+.myHeader{
+    position: relative;
+    top:-20px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: inherit;
+    > p {
+        font-weight: 600;
+        margin-left:30px;
+        margin-top:20px;
+        font-size: 20px;
+    }
+    > a {
+        position: fixed;
+        font-size: 20px;
+    }
+}
+
+
+

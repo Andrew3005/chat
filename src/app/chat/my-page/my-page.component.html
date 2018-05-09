@@ -1,0 +1,59 @@
+<div class="title-block">
+    <h3 class="title pull-left">
+        Моя сторінка <span class="sparkline bar"></span>
+    </h3>
+</div>
+<section class="section">
+    <div class="row">
+        <div class="col col-xs-12 col-sm-12 col-md-6 col-xl-6 history-col">
+            <div class="card">
+                <div class="card-block">
+                    <div class="title-block" style="border-bottom: 1px solid green">
+                        <h4 class="title">Загальні відомості</h4>
+                    </div>
+                    <p>
+                        <span style="font-weight:600;">Ім'я: </span>{{ user.name }}
+                    </p>
+                    <p>
+                        <span style="font-weight:600;">Логін:  </span>{{ user.email }}
+                    </p>
+                    <p>
+                        <span style="font-weight:600;">Пароль: </span>{{ user.password }}
+                    </p>
+                    <p>
+                        <span style="font-weight:600;">Посада: </span>{{ user.position }}
+                    </p>
+
+                </div>
+            </div>
+        </div>
+        <div class="col col-xs-12 col-sm-12 col-md-6 col-xl-6 history-col">
+            <form [formGroup]="form" (ngSubmit)="onSubmit()">
+                <div class="card">
+                    <div class="card-block">
+                        <div class="title-block" style="border-bottom: 1px solid green">
+                            <h4 class="title">Редагувати дані</h4>
+                        </div>
+                        <p>
+                            <span style="font-weight:600;margin-right:35px;">Ім'я: </span>
+                            <input type="text" formControlName="name">
+                        </p>
+                        <p>
+                            <span style="font-weight:600;margin-right:22px;">Логін:  </span>
+                            <input type="text" formControlName="email">
+                        </p>
+                        <p>
+                            <span style="font-weight:600;margin-right:5px;">Пароль: </span>
+                            <input type="text" formControlName="password">
+                        </p>
+                        <p>
+                            <span style="font-weight:600;margin-right:7px;">Посада: </span>
+                            <input type="text" formControlName="position">
+                        </p>
+                        <button type="submit" class="btn btn-block btn-primary">Редагувати</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>

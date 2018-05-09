@@ -1,0 +1,33 @@
+<section class="section">
+    <div class="row">
+        <div class="myHeader">
+            <a [routerLink]="['/chat', 'dialogues']"><i class="fa fa-arrow-left"></i></a>
+            <p>Діалог з {{secondUserName}}</p>
+        </div>
+        <div class="col-md-12">
+
+            <div class="chat__right right-bar">
+                <div class="right-bar__main">
+                    <div class="right-bar__tab">
+                        <div [ngClass]=" message.senderID === mainUser.id ? 'right-bar__main-user': 'right-bar__second-user' " *ngFor="let message of messages">
+                            <div class="right-bar__message">
+                                <p class="right-bar__user-name">{{ message.senderID === mainUser.id ? userName : secondUserName}}</p>
+                                <p class="right-bar__time">{{message.time}} </p>
+                                {{ message.text }}
+                            </div>
+                        </div>
+                    </div>
+
+                    <form [formGroup]="form" (ngSubmit)="onSendMessage()">
+                        <div class="right-bar__block-message col-xs-12 col-lg-9">
+                            <input type="text" class="right-bar__input-message form-control col-xs-7" placeholder="Написати повідомлення..." formControlName="messageText">
+                            <button type="submit" class="btn btn-block btn-primary right-bar__send col-xs-2">Надіслати</button>
+                        </div>
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
