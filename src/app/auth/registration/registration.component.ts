@@ -38,7 +38,7 @@ export class RegistrationComponent implements OnInit {
           if(user){
             resolve({forbiddenEmail : true})
           }else {
-            reject(null);
+            resolve(null);
           }
         })
     })

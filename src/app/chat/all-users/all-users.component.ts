@@ -50,27 +50,25 @@ export class AllUsersComponent implements OnInit {
         if (commonDialogue) {
           this.router.navigate(['chat/dialogue', commonDialogue, { secondUserName }]);
         } else {
-          this.createNewDialogue(secondId);
+          this.createNewDialogue(secondId, secondUserName);
         };
       })
   }
 
-  createNewDialogue(secondId) {
+  createNewDialogue(secondId, secondUserName) {
     let lastBindId
     this.dialoguesService.getAllBindDesc()
-      .subscribe((data) => {      // i want to use Observable.combineLatest, but in this line i have error500. i dont know whats wrong
-        lastBindId = data[0].dialogueID + 1;        //I am have too small experience
+      .subscribe((data) => {
+        lastBindId = data[0].dialogueID + 1;
+        Observable.combineLatest(
+          this.dialoguesService.createNewBind({ userID: this.mainUser.id, dialogueID: lastBindId }),
+          this.dialoguesService.createNewBind({ userID: secondId, dialogueID: lastBindId }),
+          this.dialoguesService.createNewDialogue({ messages: [] }))
+          .subscribe(() => {
+            console.log('done');
+            this.router.navigate(['chat/dialogue', lastBindId, { secondUserName }])
+          })
       });
-      this.func(secondId, 4);
-  }
-
-  func(secondId, lastBindId) {
-    lastBindId = 4;
-    Observable.combineLatest(
-      this.dialoguesService.createNewBind({ userID: this.mainUser.id, dialogueID: lastBindId }),
-      this.dialoguesService.createNewBind({ userID: secondId, dialogueID: lastBindId }),
-      this.dialoguesService.createNewDialogue({ messages: [] }))
-      .subscribe((data) => { console.log(data) });
   }
 
   private findCommonDialogue(data) {

@@ -26,29 +26,42 @@
             "password": "123456",
             "position": "CEO",
             "id": 4
+        },
+        {
+            "name": "Oleg",
+            "email": "justawesomeeee@gmail.com",
+            "password": "Howmuchmoney7",
+            "position": "Chyzhyk",
+            "id": 5
         }
     ],
     "bindDialoguesToUser": [{
+            "id": 1,
             "userID": 1,
             "dialogueID": 1
         },
         {
+            "id": 2,
             "userID": 2,
             "dialogueID": 1
         },
         {
+            "id": 3,
             "userID": 2,
             "dialogueID": 2
         },
         {
+            "id": 4,
             "userID": 3,
             "dialogueID": 2
         },
         {
+            "id": 5,
             "userID": 1,
             "dialogueID": 3
         },
         {
+            "id": 6,
             "userID": 3,
             "dialogueID": 3
         }
