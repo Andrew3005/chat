@@ -1,7 +1,8 @@
 export class userMessage{
     constructor(
-        senderID: number,
-        text: string,
-        time: string
+        public senderID: number,
+        public text: string,
+        public time: string,
+        public watched: boolean
     ){}
 }

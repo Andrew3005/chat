@@ -43,7 +43,6 @@ export class AllUsersComponent implements OnInit {
 
   private onClickWriteMessage(secondId, secondUserName) {
     let lastBindId: number;
-    let dataa;
     this.dialoguesService.getDialoguesByUsersId(this.mainUser.id, secondId)
       .subscribe((data) => {
         let commonDialogue = this.findCommonDialogue(data);

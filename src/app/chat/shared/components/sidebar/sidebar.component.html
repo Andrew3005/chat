@@ -24,7 +24,7 @@
                     <a [routerLink]="['/chat', 'mail']">Пошта</a>
                 </li>
                 <li routerLinkActive="active">
-                    <a [routerLink]="['/chat', 'dialogues']">Діалоги</a>
+                    <a [routerLink]="['/chat', 'dialogues']">Діалоги <span class="badge" *ngIf="uncheckedMessages!==0" >{{ uncheckedMessages }}</span></a>
                 </li>
             </ul>
         </nav>

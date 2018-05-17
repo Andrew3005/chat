@@ -32,12 +32,19 @@ export class DialogueComponent implements OnInit {
     this.mainUser = JSON.parse(window.localStorage.getItem('user'));
     this.userName = this.mainUser.name;
     this.route.params
-      .subscribe((params: Params) => {        //cant use pluck('id'). dont know why
+      .subscribe((params: Params) => {       
         this.secondUserName = params['secondUserName']
         this.dialoguesService.getDialogueById(params.id)
           .subscribe((dialogue: Dialogue) => {
             this.dialogue = dialogue;
             this.messages = dialogue['messages']
+            for (let message of this.messages) {
+              if(message.senderID !== this.mainUser.id){
+                if (message.watched === false){
+                  message.watched = true;
+                }
+             }
+            }
           })
       })
 
@@ -46,11 +53,11 @@ export class DialogueComponent implements OnInit {
     })
   }
 
-  onSendMessage(){
+  onSendMessage() {
     const time = moment().format('HH:mm DD.MM');
     const messageText = this.form.value['messageText'];
-    this.dialogue['messages'].push({"senderID": this.mainUser.id,"text" :messageText,"time": time});
-    this.dialoguesService.sendMessage(this.dialogue['id'] ,this.dialogue)
+    this.dialogue['messages'].push({ "senderID": this.mainUser.id, "text": messageText, "time": time, "watched": false });
+    this.dialoguesService.sendMessage(this.dialogue['id'], this.dialogue)
       .subscribe();
     this.form.setValue({
       messageText: ''

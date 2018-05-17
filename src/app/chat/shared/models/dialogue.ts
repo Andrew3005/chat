@@ -1,6 +1,8 @@
+import { userMessage } from "./userMessage";
+
 export class Dialogue{
     constructor(
-        id: number,
-        messages: [{}]
+        public messages: userMessage[],
+        public id: number
     ){}
 }

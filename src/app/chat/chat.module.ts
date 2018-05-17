@@ -15,6 +15,7 @@ import { DropDownDirective } from "./shared/directives/dropdown.directive";
 import { FilterPipe } from "./shared/pipes/filter.pipe";
 import { DialogueComponent } from './dialogue/dialogue.component';
 import { DialoguesService } from "./shared/services/dialogues.service";
+import { textLengthPipe } from "./shared/pipes/textLength.pipe";
 
 @NgModule({
     imports:[
@@ -33,6 +34,7 @@ import { DialoguesService } from "./shared/services/dialogues.service";
         DropDownDirective,
         FilterPipe,
         DialogueComponent,
+        textLengthPipe
     ],
     providers: [DialoguesService]
 })

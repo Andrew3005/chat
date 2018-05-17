@@ -4129,3 +4129,11 @@ pre {
 a {
     cursor: pointer
 }
+
+.badge {
+    background-color: #00a300 !important;
+    color: #fff;
+    border-radius: 30%;
+    padding: 3px 7px;
+    margin-left: 10px;
+}

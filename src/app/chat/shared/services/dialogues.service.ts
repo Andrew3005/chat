@@ -30,17 +30,19 @@ export class DialoguesService extends BaseApi {
     }
 
     createNewBind(newBind): Observable<any> {
-        //console.log(newBind);
         return this.post('bindDialoguesToUser', newBind);
     }
 
-    postRand(obj):Observable<any>{
-        return this.post('bindDialoguesToUser', obj)
+    createNewDialogue(newDialogue): Observable<any> {
+        return this.post('dialogues', newDialogue);
     }
 
-    createNewDialogue(newDialogue): Observable<any>{
-        //console.log(newDialogue);
-        return this.post('dialogues', newDialogue);
+    changeWatchedStatus(dialogue): Observable<any> {
+        return this.put('dialogues');
+    }
+
+    getAllUserDialogues(id): Observable<any> {
+        return this.get(`bindDialoguesToUser?userID=${id}`);
     }
 
 }
